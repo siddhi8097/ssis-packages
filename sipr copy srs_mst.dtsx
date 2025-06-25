@@ -1,0 +1,3451 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/1/2020 2:29:07 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SQLBUSAPPS"
+  DTS:CreatorName="RAVENSBOURNE\afranchin.tech"
+  DTS:Description="SSIS Package Description"
+  DTS:DTSID="{CBAA6B45-DAFE-46F9-BA60-DBF9937811B6}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.157"
+  DTS:LocaleID="1033"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="Tribal Remote Copy Nightly - Enc_PW"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="234"
+  DTS:VersionGUID="{DB63A5CF-8DAE-4151-88FF-7050471AD3E7}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{821FD6FA-3ABD-4918-8857-8FE57BE677FC}"
+      DTS:ObjectName="DestinationConnectionOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SQLBUSAPPS;User ID=ETL_User;Initial Catalog=sipr;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=false;Application Name=SSIS-Tribal Remote Copy Nightly - Enc_PW-{821FD6FA-3ABD-4918-8857-8FE57BE677FC}DestinationConnectionOLEDB;">
+          <EncryptedData
+            Type="http://www.w3.org/2001/04/xmlenc#Element"
+            Salt="P/GQqdN5Wdw="
+            IV="t00qTKA6Q5y8lEvSkNZLtQ==" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            <EncryptionMethod
+              Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
+            <CipherData>
+              <CipherValue>t00qTKA6Q5y8lEvSkNZLta6eK+sc9KyzVl59+tz/jPxJkS5wtbRURREUZvX3upiQlHY1Khlg2tRy1Q25KFvSLmwRl3JePkLwt9T+OPYUm9FsVGLbxsKhlkx0G0zPLShalm+Yf8rmmI4hmo2t+r1fiGNp+MjTer6VysR1SahdyaDQ2Fr864Tw7KGymfVtZaJr</CipherValue>
+            </CipherData>
+          </EncryptedData>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[GeneralSSISLog.log]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{9C06970B-4307-4C15-9C3B-0FBFD311611A}"
+      DTS:ObjectName="GeneralSSISLog.log">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="D:\SSIS\Logs\GeneralSSISLog.log" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Log Output]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{9C02BC09-697C-4D5F-9AED-6001614E6D42}"
+      DTS:ObjectName="Log Output">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="D:\Microsoft SQL Server Reporting Services\SSIS\SIPR Import Log.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 0"
+              DTS:DTSID="{28045B91-3D11-4536-A4B7-C478D925FFBE}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SIPR_Import_Log.txt]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{3060C28D-8368-4CC1-9C63-25DC32A06F8B}"
+      DTS:ObjectName="SIPR_Import_Log.txt">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="D:\Microsoft SQL Server Reporting Services\SSIS\SIPR Import Log2.txt" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[sitsorcl.raves_rep]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A1E59A6F-FE57-46F0-99E7-185A2AC31BD0}"
+      DTS:ObjectName="sitsorcl.raves_rep">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=rave-sits-prod.cl6hms25byzx.eu-west-1.rds.amazonaws.com:1521/RAVESITS;User ID=raves_rep;Provider=OraOLEDB.Oracle.1;Persist Security Info=True;">
+          <EncryptedData
+            Type="http://www.w3.org/2001/04/xmlenc#Element"
+            Salt="0RZW2hqvWRE="
+            IV="7NLGxmfC+Y3bLsJtthqUZQ==" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            <EncryptionMethod
+              Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
+            <CipherData>
+              <CipherValue>7NLGxmfC+Y3bLsJtthqUZT/UW+rZcpG94QpnaAyls2qnoXai/UuyEARi0vctFizpuMOaXF0heasF+pEfo9/a7agRdFZHgTrRfubkZd5V6ZYW39SmRCX0EGYBlemiHdhZLmXGCJG+FYvMkzPJgi7odd5MJ4isevXRpkj5MXhzVtQciFCT3rXrLFa3wIOyfJ+4</CipherValue>
+            </CipherData>
+          </EncryptedData>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="SIPR_Import_Log.txt"
+      DTS:CreationName="Microsoft.LogProviderTextFile"
+      DTS:Description="Writes log entries for events to a CSV file"
+      DTS:DTSID="{52158953-EB27-409F-B3C8-FDFB68B38871}"
+      DTS:ObjectName="SSIS log provider for Text files">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+    <DTS:LogProvider
+      DTS:ConfigString="GeneralSSISLog.log"
+      DTS:CreationName="Microsoft.LogProviderTextFile"
+      DTS:Description="Writes log entries for events to a CSV file"
+      DTS:DTSID="{6994763B-5611-4B15-8F41-139B4BD1F62C}"
+      DTS:ObjectName="SSIS log provider for Text files1">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables />
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">21,7,OnError,19,OnExecStatusChanged,13,OnInformation,27,OnPipelinePostComponentCall,25,OnPipelinePostEndOfRowset,25,OnPipelinePostPrimeOutput,26,OnPipelinePreComponentCall,24,OnPipelinePreEndOfRowset,24,OnPipelinePrePrimeOutput,18,OnPipelineRowsSent,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,10,Diagnostic,12,DiagnosticEx</DTS:Property>
+    <DTS:Property
+      DTS:EventName="Diagnostic"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="DiagnosticEx"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnExecStatusChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnInformation"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostComponentCall"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostPrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePreComponentCall"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePreEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePrePrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelineRowsSent"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnProgress"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnQueryCancel"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnVariableValueChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnWarning"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{6994763B-5611-4B15-8F41-139B4BD1F62C}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Copy srs_mst_Final"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{C6CB9903-876C-41B0-A3E1-E00094C176FD}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy srs_mst_Final"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{821FD6FA-3ABD-4918-8857-8FE57BE677FC}"
+          SQLTask:SqlStatementSource="exec sipr.[dbo].[RB_prcSRS_mst_Getdata]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SRS_MST"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:DTSID="{506A60E0-7F54-4DF2-9FBD-0C90FB0D0966}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SRS_MST"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <pipeline
+          defaultBufferSize="3145728"
+          version="1">
+          <components>
+            <component
+              refId="Package\SRS_MST\D2_srs_mst_STAGING"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="D2_srs_mst_STAGING"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[srs_mst_STAGING]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SRS_MST\D2_srs_mst_STAGING.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_CODE]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="MST_CODE"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_code]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_CODE]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_SRTN]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="MST_SRTN"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_srtn]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_SRTN]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_ESID]"
+                      cachedDataType="numeric"
+                      cachedName="MST_ESID"
+                      cachedPrecision="13"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_esid]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_ESID]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_TITL]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="MST_TITL"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_titl]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_TITL]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_SURN]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="MST_SURN"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_surn]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_SURN]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_SNDX]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="MST_SNDX"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_sndx]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_SNDX]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_FNM1]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="MST_FNM1"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_fnm1]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_FNM1]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_FNM2]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="MST_FNM2"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_fnm2]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_FNM2]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_FNM3]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="MST_FNM3"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_fnm3]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_FNM3]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_FUSD]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="MST_FUSD"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_fusd]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_FUSD]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_INIT]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="MST_INIT"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_init]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_INIT]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_DOB]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="MST_DOB"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_dob]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_DOB]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_GEND]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="MST_GEND"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_gend]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_GEND]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_HAPC]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="MST_HAPC"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_hapc]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_HAPC]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_ADID]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="MST_ADID"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_adid]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_ADID]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_TYPE]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="MST_TYPE"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_type]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_TYPE]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_ARCD]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="MST_ARCD"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_arcd]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_ARCD]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_ARCT]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="MST_ARCT"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_arct]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_ARCT]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_USRC]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="MST_USRC"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_usrc]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_USRC]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_FLOC]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="MST_FLOC"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_floc]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_FLOC]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_PSWD]"
+                      cachedDataType="wstr"
+                      cachedLength="24"
+                      cachedName="MST_PSWD"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_pswd]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_PSWD]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_EXTR]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="MST_EXTR"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_extr]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_EXTR]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_DMLF]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="MST_DMLF"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_dmlf]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_DMLF]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_UPDD]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="MST_UPDD"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_updd]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UPDD]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_EXCD]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="MST_EXCD"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_excd]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_EXCD]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_DIED]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="MST_DIED"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_died]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_DIED]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_DESC]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="MST_DESC"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_desc]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_DESC]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_PUBM]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="MST_PUBM"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_pubm]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_PUBM]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_UDF1]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="MST_UDF1"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udf1]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF1]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_UDF2]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="MST_UDF2"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udf2]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF2]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_UDF3]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="MST_UDF3"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udf3]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF3]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_UDF4]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="MST_UDF4"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udf4]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF4]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_UDF5]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="MST_UDF5"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udf5]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF5]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_UDF6]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="MST_UDF6"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udf6]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF6]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_UDF7]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="MST_UDF7"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udf7]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF7]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_UDF8]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="MST_UDF8"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udf8]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF8]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_UDF9]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="MST_UDF9"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udf9]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF9]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_UDFA]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="MST_UDFA"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udfa]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFA]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_UDFB]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="MST_UDFB"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udfb]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFB]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_UDFC]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="MST_UDFC"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udfc]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFC]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_UDFD]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="MST_UDFD"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udfd]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFD]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_UDFE]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="MST_UDFE"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udfe]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFE]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_UDFF]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="MST_UDFF"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udff]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFF]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_UDFG]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="MST_UDFG"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udfg]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFG]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_UDFH]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="MST_UDFH"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udfh]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFH]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_UDFI]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="MST_UDFI"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udfi]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFI]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_UDFJ]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="MST_UDFJ"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udfj]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFJ]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_UDFK]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="MST_UDFK"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udfk]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFK]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_PRVS]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="MST_PRVS"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_prvs]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_PRVS]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_NINO]"
+                      cachedDataType="wstr"
+                      cachedLength="32"
+                      cachedName="MST_NINO"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_nino]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_NINO]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_RSLR]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="MST_RSLR"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_rslr]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_RSLR]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_EXCS]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="MST_EXCS"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_excs]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_EXCS]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_MFUS]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="MST_MFUS"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_mfus]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_MFUS]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_MFN1]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="MST_MFN1"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_mfn1]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_MFN1]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_MFN2]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="MST_MFN2"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_mfn2]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_MFN2]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_MFN3]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="MST_MFN3"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_mfn3]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_MFN3]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_MSUR]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="MST_MSUR"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_msur]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_MSUR]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_MPRS]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="MST_MPRS"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_mprs]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_MPRS]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_NAME]"
+                      cachedDataType="wstr"
+                      cachedLength="150"
+                      cachedName="MST_NAME"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_name]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_NAME]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_AUTN]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="MST_AUTN"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_autn]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_AUTN]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_LASN]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="MST_LASN"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_lasn]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_LASN]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_DMP1]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="MST_DMP1"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_dmp1]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_DMP1]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_DMP2]"
+                      cachedDataType="wstr"
+                      cachedLength="4"
+                      cachedName="MST_DMP2"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_dmp2]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_DMP2]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_AKEY]"
+                      cachedDataType="wstr"
+                      cachedLength="40"
+                      cachedName="MST_AKEY"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_akey]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_AKEY]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_UPSN]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="MST_UPSN"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_upsn]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UPSN]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_PRFM]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="MST_PRFM"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_prfm]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_PRFM]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_MDUP]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="MST_MDUP"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[MST_MDUP]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_MDUP]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_EDGE]"
+                      cachedDataType="wstr"
+                      cachedLength="36"
+                      cachedName="MST_EDGE"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[MST_EDGE]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_EDGE]" />
+                    <inputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].Columns[MST_PGPR]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="MST_PGPR"
+                      externalMetadataColumnId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[MST_PGPR]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_PGPR]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_code]"
+                      dataType="wstr"
+                      length="12"
+                      name="mst_code" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_srtn]"
+                      dataType="wstr"
+                      length="15"
+                      name="mst_srtn" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_esid]"
+                      dataType="numeric"
+                      name="mst_esid"
+                      precision="13" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_titl]"
+                      dataType="wstr"
+                      length="12"
+                      name="mst_titl" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_surn]"
+                      dataType="wstr"
+                      length="40"
+                      name="mst_surn" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_sndx]"
+                      dataType="wstr"
+                      length="4"
+                      name="mst_sndx" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_fnm1]"
+                      dataType="wstr"
+                      length="30"
+                      name="mst_fnm1" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_fnm2]"
+                      dataType="wstr"
+                      length="30"
+                      name="mst_fnm2" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_fnm3]"
+                      dataType="wstr"
+                      length="30"
+                      name="mst_fnm3" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_fusd]"
+                      dataType="wstr"
+                      length="30"
+                      name="mst_fusd" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_init]"
+                      dataType="wstr"
+                      length="3"
+                      name="mst_init" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_dob]"
+                      dataType="dbTimeStamp"
+                      name="mst_dob" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_gend]"
+                      dataType="wstr"
+                      length="1"
+                      name="mst_gend" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_hapc]"
+                      dataType="wstr"
+                      length="12"
+                      name="mst_hapc" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_adid]"
+                      dataType="wstr"
+                      length="20"
+                      name="mst_adid" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_type]"
+                      dataType="wstr"
+                      length="1"
+                      name="mst_type" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_arcd]"
+                      dataType="dbTimeStamp"
+                      name="mst_arcd" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_arct]"
+                      dataType="dbTimeStamp"
+                      name="mst_arct" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_usrc]"
+                      dataType="wstr"
+                      length="12"
+                      name="mst_usrc" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_floc]"
+                      dataType="wstr"
+                      length="50"
+                      name="mst_floc" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_pswd]"
+                      dataType="wstr"
+                      length="24"
+                      name="mst_pswd" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_extr]"
+                      dataType="wstr"
+                      length="15"
+                      name="mst_extr" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_dmlf]"
+                      dataType="wstr"
+                      length="1"
+                      name="mst_dmlf" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_updd]"
+                      dataType="dbTimeStamp"
+                      name="mst_updd" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_excd]"
+                      dataType="wstr"
+                      length="1"
+                      name="mst_excd" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_died]"
+                      dataType="dbTimeStamp"
+                      name="mst_died" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_desc]"
+                      dataType="wstr"
+                      length="255"
+                      name="mst_desc" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_pubm]"
+                      dataType="wstr"
+                      length="1"
+                      name="mst_pubm" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udf1]"
+                      dataType="wstr"
+                      length="15"
+                      name="mst_udf1" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udf2]"
+                      dataType="wstr"
+                      length="15"
+                      name="mst_udf2" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udf3]"
+                      dataType="wstr"
+                      length="15"
+                      name="mst_udf3" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udf4]"
+                      dataType="wstr"
+                      length="15"
+                      name="mst_udf4" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udf5]"
+                      dataType="wstr"
+                      length="15"
+                      name="mst_udf5" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udf6]"
+                      dataType="wstr"
+                      length="15"
+                      name="mst_udf6" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udf7]"
+                      dataType="wstr"
+                      length="15"
+                      name="mst_udf7" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udf8]"
+                      dataType="wstr"
+                      length="15"
+                      name="mst_udf8" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udf9]"
+                      dataType="wstr"
+                      length="15"
+                      name="mst_udf9" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udfa]"
+                      dataType="wstr"
+                      length="15"
+                      name="mst_udfa" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udfb]"
+                      dataType="wstr"
+                      length="15"
+                      name="mst_udfb" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udfc]"
+                      dataType="wstr"
+                      length="15"
+                      name="mst_udfc" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udfd]"
+                      dataType="wstr"
+                      length="15"
+                      name="mst_udfd" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udfe]"
+                      dataType="wstr"
+                      length="15"
+                      name="mst_udfe" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udff]"
+                      dataType="wstr"
+                      length="15"
+                      name="mst_udff" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udfg]"
+                      dataType="wstr"
+                      length="15"
+                      name="mst_udfg" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udfh]"
+                      dataType="wstr"
+                      length="15"
+                      name="mst_udfh" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udfi]"
+                      dataType="wstr"
+                      length="15"
+                      name="mst_udfi" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udfj]"
+                      dataType="wstr"
+                      length="100"
+                      name="mst_udfj" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_udfk]"
+                      dataType="wstr"
+                      length="100"
+                      name="mst_udfk" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_prvs]"
+                      dataType="wstr"
+                      length="40"
+                      name="mst_prvs" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_nino]"
+                      dataType="wstr"
+                      length="32"
+                      name="mst_nino" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_rslr]"
+                      dataType="wstr"
+                      length="1"
+                      name="mst_rslr" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_excs]"
+                      dataType="wstr"
+                      length="1"
+                      name="mst_excs" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_mfus]"
+                      dataType="wstr"
+                      length="30"
+                      name="mst_mfus" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_mfn1]"
+                      dataType="wstr"
+                      length="30"
+                      name="mst_mfn1" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_mfn2]"
+                      dataType="wstr"
+                      length="30"
+                      name="mst_mfn2" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_mfn3]"
+                      dataType="wstr"
+                      length="30"
+                      name="mst_mfn3" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_msur]"
+                      dataType="wstr"
+                      length="40"
+                      name="mst_msur" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_mprs]"
+                      dataType="wstr"
+                      length="40"
+                      name="mst_mprs" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_name]"
+                      dataType="wstr"
+                      length="150"
+                      name="mst_name" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_autn]"
+                      dataType="wstr"
+                      length="1"
+                      name="mst_autn" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_lasn]"
+                      dataType="wstr"
+                      length="15"
+                      name="mst_lasn" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_dmp1]"
+                      dataType="wstr"
+                      length="4"
+                      name="mst_dmp1" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_dmp2]"
+                      dataType="wstr"
+                      length="4"
+                      name="mst_dmp2" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_akey]"
+                      dataType="wstr"
+                      length="40"
+                      name="mst_akey" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_upsn]"
+                      dataType="wstr"
+                      length="1"
+                      name="mst_upsn" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[mst_prfm]"
+                      dataType="wstr"
+                      length="1"
+                      name="mst_prfm" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[MST_MDUP]"
+                      dataType="wstr"
+                      length="1"
+                      name="MST_MDUP" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[MST_EDGE]"
+                      dataType="wstr"
+                      length="36"
+                      name="MST_EDGE" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input].ExternalColumns[MST_PGPR]"
+                      dataType="wstr"
+                      length="12"
+                      name="MST_PGPR" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\SRS_MST\D2_srs_mst_STAGING.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SRS_MST\D2_srs_mst_STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SRS_MST\D2_srs_mst_STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SRS_MST\D2_srs_mst_STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\SRS_MST\srs_mst"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="srs_mst"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">"SITS"."SRS_MST"</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SRS_MST\srs_mst.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[sitsorcl.raves_rep]"
+                  connectionManagerRefId="Package.ConnectionManagers[sitsorcl.raves_rep]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_CODE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_CODE]"
+                      length="12"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_CODE]"
+                      name="MST_CODE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_SRTN]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_SRTN]"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_SRTN]"
+                      name="MST_SRTN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_ESID]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_ESID]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_ESID]"
+                      name="MST_ESID"
+                      precision="13"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_TITL]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_TITL]"
+                      length="12"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_TITL]"
+                      name="MST_TITL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_SURN]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_SURN]"
+                      length="40"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_SURN]"
+                      name="MST_SURN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_SNDX]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_SNDX]"
+                      length="4"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_SNDX]"
+                      name="MST_SNDX"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_FNM1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_FNM1]"
+                      length="30"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_FNM1]"
+                      name="MST_FNM1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_FNM2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_FNM2]"
+                      length="30"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_FNM2]"
+                      name="MST_FNM2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_FNM3]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_FNM3]"
+                      length="30"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_FNM3]"
+                      name="MST_FNM3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_FUSD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_FUSD]"
+                      length="30"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_FUSD]"
+                      name="MST_FUSD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_INIT]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_INIT]"
+                      length="3"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_INIT]"
+                      name="MST_INIT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_DOB]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_DOB]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_DOB]"
+                      name="MST_DOB"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_GEND]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_GEND]"
+                      length="1"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_GEND]"
+                      name="MST_GEND"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_HAPC]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_HAPC]"
+                      length="12"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_HAPC]"
+                      name="MST_HAPC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_ADID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_ADID]"
+                      length="20"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_ADID]"
+                      name="MST_ADID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_TYPE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_TYPE]"
+                      length="1"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_TYPE]"
+                      name="MST_TYPE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_ARCD]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_ARCD]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_ARCD]"
+                      name="MST_ARCD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_ARCT]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_ARCT]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_ARCT]"
+                      name="MST_ARCT"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_USRC]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_USRC]"
+                      length="12"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_USRC]"
+                      name="MST_USRC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_FLOC]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_FLOC]"
+                      length="50"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_FLOC]"
+                      name="MST_FLOC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_PSWD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_PSWD]"
+                      length="24"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_PSWD]"
+                      name="MST_PSWD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_EXTR]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_EXTR]"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_EXTR]"
+                      name="MST_EXTR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_DMLF]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_DMLF]"
+                      length="1"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_DMLF]"
+                      name="MST_DMLF"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UPDD]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UPDD]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UPDD]"
+                      name="MST_UPDD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_EXCD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_EXCD]"
+                      length="1"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_EXCD]"
+                      name="MST_EXCD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_DIED]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_DIED]"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_DIED]"
+                      name="MST_DIED"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_DESC]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_DESC]"
+                      length="255"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_DESC]"
+                      name="MST_DESC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_PUBM]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_PUBM]"
+                      length="1"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_PUBM]"
+                      name="MST_PUBM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDF1]"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF1]"
+                      name="MST_UDF1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDF2]"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF2]"
+                      name="MST_UDF2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF3]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDF3]"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF3]"
+                      name="MST_UDF3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF4]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDF4]"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF4]"
+                      name="MST_UDF4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF5]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDF5]"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF5]"
+                      name="MST_UDF5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF6]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDF6]"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF6]"
+                      name="MST_UDF6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF7]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDF7]"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF7]"
+                      name="MST_UDF7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF8]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDF8]"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF8]"
+                      name="MST_UDF8"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF9]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDF9]"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDF9]"
+                      name="MST_UDF9"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDFA]"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFA]"
+                      name="MST_UDFA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFB]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDFB]"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFB]"
+                      name="MST_UDFB"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFC]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDFC]"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFC]"
+                      name="MST_UDFC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDFD]"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFD]"
+                      name="MST_UDFD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDFE]"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFE]"
+                      name="MST_UDFE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFF]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDFF]"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFF]"
+                      name="MST_UDFF"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFG]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDFG]"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFG]"
+                      name="MST_UDFG"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFH]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDFH]"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFH]"
+                      name="MST_UDFH"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFI]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDFI]"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFI]"
+                      name="MST_UDFI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFJ]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDFJ]"
+                      length="100"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFJ]"
+                      name="MST_UDFJ"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFK]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDFK]"
+                      length="100"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UDFK]"
+                      name="MST_UDFK"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_PRVS]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_PRVS]"
+                      length="40"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_PRVS]"
+                      name="MST_PRVS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_NINO]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_NINO]"
+                      length="32"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_NINO]"
+                      name="MST_NINO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_RSLR]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_RSLR]"
+                      length="1"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_RSLR]"
+                      name="MST_RSLR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_EXCS]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_EXCS]"
+                      length="1"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_EXCS]"
+                      name="MST_EXCS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_MFUS]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_MFUS]"
+                      length="30"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_MFUS]"
+                      name="MST_MFUS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_MFN1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_MFN1]"
+                      length="30"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_MFN1]"
+                      name="MST_MFN1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_MFN2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_MFN2]"
+                      length="30"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_MFN2]"
+                      name="MST_MFN2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_MFN3]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_MFN3]"
+                      length="30"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_MFN3]"
+                      name="MST_MFN3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_MSUR]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_MSUR]"
+                      length="40"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_MSUR]"
+                      name="MST_MSUR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_MPRS]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_MPRS]"
+                      length="40"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_MPRS]"
+                      name="MST_MPRS"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_NAME]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_NAME]"
+                      length="150"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_NAME]"
+                      name="MST_NAME"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_AUTN]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_AUTN]"
+                      length="1"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_AUTN]"
+                      name="MST_AUTN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_LASN]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_LASN]"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_LASN]"
+                      name="MST_LASN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_DMP1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_DMP1]"
+                      length="4"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_DMP1]"
+                      name="MST_DMP1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_DMP2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_DMP2]"
+                      length="4"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_DMP2]"
+                      name="MST_DMP2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_AKEY]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_AKEY]"
+                      length="40"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_AKEY]"
+                      name="MST_AKEY"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UPSN]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UPSN]"
+                      length="1"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_UPSN]"
+                      name="MST_UPSN"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_PRFM]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_PRFM]"
+                      length="1"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_PRFM]"
+                      name="MST_PRFM"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_MDUP]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_MDUP]"
+                      length="1"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_MDUP]"
+                      name="MST_MDUP"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_EDGE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_EDGE]"
+                      length="36"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_EDGE]"
+                      name="MST_EDGE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_PGPR]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_PGPR]"
+                      length="12"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].Columns[MST_PGPR]"
+                      name="MST_PGPR"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_CODE]"
+                      dataType="wstr"
+                      length="12"
+                      name="MST_CODE" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_SRTN]"
+                      dataType="wstr"
+                      length="15"
+                      name="MST_SRTN" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_ESID]"
+                      dataType="numeric"
+                      name="MST_ESID"
+                      precision="13" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_TITL]"
+                      dataType="wstr"
+                      length="12"
+                      name="MST_TITL" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_SURN]"
+                      dataType="wstr"
+                      length="40"
+                      name="MST_SURN" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_SNDX]"
+                      dataType="wstr"
+                      length="4"
+                      name="MST_SNDX" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_FNM1]"
+                      dataType="wstr"
+                      length="30"
+                      name="MST_FNM1" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_FNM2]"
+                      dataType="wstr"
+                      length="30"
+                      name="MST_FNM2" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_FNM3]"
+                      dataType="wstr"
+                      length="30"
+                      name="MST_FNM3" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_FUSD]"
+                      dataType="wstr"
+                      length="30"
+                      name="MST_FUSD" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_INIT]"
+                      dataType="wstr"
+                      length="3"
+                      name="MST_INIT" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_DOB]"
+                      dataType="dbTimeStamp"
+                      name="MST_DOB" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_GEND]"
+                      dataType="wstr"
+                      length="1"
+                      name="MST_GEND" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_HAPC]"
+                      dataType="wstr"
+                      length="12"
+                      name="MST_HAPC" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_ADID]"
+                      dataType="wstr"
+                      length="20"
+                      name="MST_ADID" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_TYPE]"
+                      dataType="wstr"
+                      length="1"
+                      name="MST_TYPE" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_ARCD]"
+                      dataType="dbTimeStamp"
+                      name="MST_ARCD" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_ARCT]"
+                      dataType="dbTimeStamp"
+                      name="MST_ARCT" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_USRC]"
+                      dataType="wstr"
+                      length="12"
+                      name="MST_USRC" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_FLOC]"
+                      dataType="wstr"
+                      length="50"
+                      name="MST_FLOC" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_PSWD]"
+                      dataType="wstr"
+                      length="24"
+                      name="MST_PSWD" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_EXTR]"
+                      dataType="wstr"
+                      length="15"
+                      name="MST_EXTR" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_DMLF]"
+                      dataType="wstr"
+                      length="1"
+                      name="MST_DMLF" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UPDD]"
+                      dataType="dbTimeStamp"
+                      name="MST_UPDD" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_EXCD]"
+                      dataType="wstr"
+                      length="1"
+                      name="MST_EXCD" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_DIED]"
+                      dataType="dbTimeStamp"
+                      name="MST_DIED" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_DESC]"
+                      dataType="wstr"
+                      length="255"
+                      name="MST_DESC" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_PUBM]"
+                      dataType="wstr"
+                      length="1"
+                      name="MST_PUBM" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDF1]"
+                      dataType="wstr"
+                      length="15"
+                      name="MST_UDF1" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDF2]"
+                      dataType="wstr"
+                      length="15"
+                      name="MST_UDF2" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDF3]"
+                      dataType="wstr"
+                      length="15"
+                      name="MST_UDF3" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDF4]"
+                      dataType="wstr"
+                      length="15"
+                      name="MST_UDF4" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDF5]"
+                      dataType="wstr"
+                      length="15"
+                      name="MST_UDF5" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDF6]"
+                      dataType="wstr"
+                      length="15"
+                      name="MST_UDF6" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDF7]"
+                      dataType="wstr"
+                      length="15"
+                      name="MST_UDF7" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDF8]"
+                      dataType="wstr"
+                      length="15"
+                      name="MST_UDF8" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDF9]"
+                      dataType="wstr"
+                      length="15"
+                      name="MST_UDF9" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDFA]"
+                      dataType="wstr"
+                      length="15"
+                      name="MST_UDFA" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDFB]"
+                      dataType="wstr"
+                      length="15"
+                      name="MST_UDFB" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDFC]"
+                      dataType="wstr"
+                      length="15"
+                      name="MST_UDFC" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDFD]"
+                      dataType="wstr"
+                      length="15"
+                      name="MST_UDFD" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDFE]"
+                      dataType="wstr"
+                      length="15"
+                      name="MST_UDFE" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDFF]"
+                      dataType="wstr"
+                      length="15"
+                      name="MST_UDFF" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDFG]"
+                      dataType="wstr"
+                      length="15"
+                      name="MST_UDFG" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDFH]"
+                      dataType="wstr"
+                      length="15"
+                      name="MST_UDFH" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDFI]"
+                      dataType="wstr"
+                      length="15"
+                      name="MST_UDFI" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDFJ]"
+                      dataType="wstr"
+                      length="100"
+                      name="MST_UDFJ" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UDFK]"
+                      dataType="wstr"
+                      length="100"
+                      name="MST_UDFK" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_PRVS]"
+                      dataType="wstr"
+                      length="40"
+                      name="MST_PRVS" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_NINO]"
+                      dataType="wstr"
+                      length="32"
+                      name="MST_NINO" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_RSLR]"
+                      dataType="wstr"
+                      length="1"
+                      name="MST_RSLR" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_EXCS]"
+                      dataType="wstr"
+                      length="1"
+                      name="MST_EXCS" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_MFUS]"
+                      dataType="wstr"
+                      length="30"
+                      name="MST_MFUS" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_MFN1]"
+                      dataType="wstr"
+                      length="30"
+                      name="MST_MFN1" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_MFN2]"
+                      dataType="wstr"
+                      length="30"
+                      name="MST_MFN2" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_MFN3]"
+                      dataType="wstr"
+                      length="30"
+                      name="MST_MFN3" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_MSUR]"
+                      dataType="wstr"
+                      length="40"
+                      name="MST_MSUR" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_MPRS]"
+                      dataType="wstr"
+                      length="40"
+                      name="MST_MPRS" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_NAME]"
+                      dataType="wstr"
+                      length="150"
+                      name="MST_NAME" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_AUTN]"
+                      dataType="wstr"
+                      length="1"
+                      name="MST_AUTN" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_LASN]"
+                      dataType="wstr"
+                      length="15"
+                      name="MST_LASN" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_DMP1]"
+                      dataType="wstr"
+                      length="4"
+                      name="MST_DMP1" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_DMP2]"
+                      dataType="wstr"
+                      length="4"
+                      name="MST_DMP2" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_AKEY]"
+                      dataType="wstr"
+                      length="40"
+                      name="MST_AKEY" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_UPSN]"
+                      dataType="wstr"
+                      length="1"
+                      name="MST_UPSN" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_PRFM]"
+                      dataType="wstr"
+                      length="1"
+                      name="MST_PRFM" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_MDUP]"
+                      dataType="wstr"
+                      length="1"
+                      name="MST_MDUP" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_EDGE]"
+                      dataType="wstr"
+                      length="36"
+                      name="MST_EDGE" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output].ExternalColumns[MST_PGPR]"
+                      dataType="wstr"
+                      length="12"
+                      name="MST_PGPR" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_CODE]"
+                      dataType="wstr"
+                      length="12"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_CODE]"
+                      name="MST_CODE" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_SRTN]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_SRTN]"
+                      name="MST_SRTN" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_ESID]"
+                      dataType="numeric"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_ESID]"
+                      name="MST_ESID"
+                      precision="13" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_TITL]"
+                      dataType="wstr"
+                      length="12"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_TITL]"
+                      name="MST_TITL" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_SURN]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_SURN]"
+                      name="MST_SURN" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_SNDX]"
+                      dataType="wstr"
+                      length="4"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_SNDX]"
+                      name="MST_SNDX" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_FNM1]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_FNM1]"
+                      name="MST_FNM1" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_FNM2]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_FNM2]"
+                      name="MST_FNM2" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_FNM3]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_FNM3]"
+                      name="MST_FNM3" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_FUSD]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_FUSD]"
+                      name="MST_FUSD" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_INIT]"
+                      dataType="wstr"
+                      length="3"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_INIT]"
+                      name="MST_INIT" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_DOB]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_DOB]"
+                      name="MST_DOB" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_GEND]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_GEND]"
+                      name="MST_GEND" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_HAPC]"
+                      dataType="wstr"
+                      length="12"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_HAPC]"
+                      name="MST_HAPC" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_ADID]"
+                      dataType="wstr"
+                      length="20"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_ADID]"
+                      name="MST_ADID" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_TYPE]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_TYPE]"
+                      name="MST_TYPE" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_ARCD]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_ARCD]"
+                      name="MST_ARCD" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_ARCT]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_ARCT]"
+                      name="MST_ARCT" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_USRC]"
+                      dataType="wstr"
+                      length="12"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_USRC]"
+                      name="MST_USRC" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_FLOC]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_FLOC]"
+                      name="MST_FLOC" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_PSWD]"
+                      dataType="wstr"
+                      length="24"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_PSWD]"
+                      name="MST_PSWD" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_EXTR]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_EXTR]"
+                      name="MST_EXTR" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_DMLF]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_DMLF]"
+                      name="MST_DMLF" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UPDD]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UPDD]"
+                      name="MST_UPDD" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_EXCD]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_EXCD]"
+                      name="MST_EXCD" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_DIED]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_DIED]"
+                      name="MST_DIED" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_DESC]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_DESC]"
+                      name="MST_DESC" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_PUBM]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_PUBM]"
+                      name="MST_PUBM" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDF1]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDF1]"
+                      name="MST_UDF1" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDF2]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDF2]"
+                      name="MST_UDF2" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDF3]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDF3]"
+                      name="MST_UDF3" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDF4]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDF4]"
+                      name="MST_UDF4" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDF5]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDF5]"
+                      name="MST_UDF5" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDF6]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDF6]"
+                      name="MST_UDF6" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDF7]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDF7]"
+                      name="MST_UDF7" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDF8]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDF8]"
+                      name="MST_UDF8" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDF9]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDF9]"
+                      name="MST_UDF9" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDFA]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDFA]"
+                      name="MST_UDFA" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDFB]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDFB]"
+                      name="MST_UDFB" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDFC]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDFC]"
+                      name="MST_UDFC" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDFD]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDFD]"
+                      name="MST_UDFD" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDFE]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDFE]"
+                      name="MST_UDFE" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDFF]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDFF]"
+                      name="MST_UDFF" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDFG]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDFG]"
+                      name="MST_UDFG" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDFH]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDFH]"
+                      name="MST_UDFH" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDFI]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDFI]"
+                      name="MST_UDFI" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDFJ]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDFJ]"
+                      name="MST_UDFJ" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDFK]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UDFK]"
+                      name="MST_UDFK" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_PRVS]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_PRVS]"
+                      name="MST_PRVS" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_NINO]"
+                      dataType="wstr"
+                      length="32"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_NINO]"
+                      name="MST_NINO" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_RSLR]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_RSLR]"
+                      name="MST_RSLR" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_EXCS]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_EXCS]"
+                      name="MST_EXCS" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_MFUS]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_MFUS]"
+                      name="MST_MFUS" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_MFN1]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_MFN1]"
+                      name="MST_MFN1" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_MFN2]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_MFN2]"
+                      name="MST_MFN2" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_MFN3]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_MFN3]"
+                      name="MST_MFN3" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_MSUR]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_MSUR]"
+                      name="MST_MSUR" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_MPRS]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_MPRS]"
+                      name="MST_MPRS" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_NAME]"
+                      dataType="wstr"
+                      length="150"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_NAME]"
+                      name="MST_NAME" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_AUTN]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_AUTN]"
+                      name="MST_AUTN" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_LASN]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_LASN]"
+                      name="MST_LASN" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_DMP1]"
+                      dataType="wstr"
+                      length="4"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_DMP1]"
+                      name="MST_DMP1" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_DMP2]"
+                      dataType="wstr"
+                      length="4"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_DMP2]"
+                      name="MST_DMP2" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_AKEY]"
+                      dataType="wstr"
+                      length="40"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_AKEY]"
+                      name="MST_AKEY" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UPSN]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_UPSN]"
+                      name="MST_UPSN" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_PRFM]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_PRFM]"
+                      name="MST_PRFM" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_MDUP]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_MDUP]"
+                      name="MST_MDUP" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_EDGE]"
+                      dataType="wstr"
+                      length="36"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_EDGE]"
+                      name="MST_EDGE" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_PGPR]"
+                      dataType="wstr"
+                      length="12"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[MST_PGPR]"
+                      name="MST_PGPR" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\SRS_MST.Paths[OLE DB Source Output]"
+              endId="Package\SRS_MST\D2_srs_mst_STAGING.Inputs[Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\SRS_MST\srs_mst.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate srs_mst_staging"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{1FA92E8E-59CB-4296-A733-63B3DD1E961F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate srs_mst_staging"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="1">
+        <DTS:Property
+          DTS:DataType="8"
+          DTS:Name="EventFilter">13,7,OnError,19,OnExecStatusChanged,13,OnInformation,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,24,ExecuteSQLExecutingQuery</DTS:Property>
+        <DTS:Property
+          DTS:EventName="ExecuteSQLExecutingQuery"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnError"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnExecStatusChanged"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnInformation"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPostExecute"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPostValidate"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPreExecute"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPreValidate"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnProgress"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnQueryCancel"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnTaskFailed"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnVariableValueChanged"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnWarning"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+      </DTS:LoggingOptions>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{821FD6FA-3ABD-4918-8857-8FE57BE677FC}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="use sipr&#xA;truncate table sipr.dbo.srs_mst_STAGING" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{BCD43043-25BE-4F56-83B8-187AA81E9134}"
+      DTS:From="Package\SRS_MST"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Copy srs_mst_Final" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{850B83FD-7726-4EBA-A31F-DDA886C628B1}"
+      DTS:From="Package\Truncate srs_mst_staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\SRS_MST" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="176,42"
+          Id="Package\Copy srs_mst_Final"
+          TopLeft="109,255" />
+        <NodeLayout
+          Size="131,42"
+          Id="Package\SRS_MST"
+          TopLeft="204.595238095238,131.214285714287" />
+        <NodeLayout
+          Size="205,42"
+          Id="Package\Truncate srs_mst_staging"
+          TopLeft="209.833333333333,5.50000000000015" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="270.095238095238,173.214285714287">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-73.095238095238,81.785714285713"
+              Start="0,0"
+              End="-73.095238095238,74.285714285713">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.8928571428565" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.8928571428565"
+                    Point2="0,40.8928571428565"
+                    Point3="-4,40.8928571428565" />
+                  <mssgle:LineSegment
+                    End="-69.095238095238,40.8928571428565" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-69.095238095238,40.8928571428565"
+                    Point2="-73.095238095238,40.8928571428565"
+                    Point3="-73.095238095238,44.8928571428565" />
+                  <mssgle:LineSegment
+                    End="-73.095238095238,74.285714285713" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="312.333333333333,47.5000000000001">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-42.2380952380951,83.7142857142869"
+              Start="0,0"
+              End="-42.2380952380951,76.2142857142869">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.8571428571434" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,37.8571428571434"
+                    Point2="0,41.8571428571434"
+                    Point3="-4,41.8571428571434" />
+                  <mssgle:LineSegment
+                    End="-38.2380952380951,41.8571428571434" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-38.2380952380951,41.8571428571434"
+                    Point2="-42.2380952380951,41.8571428571434"
+                    Point3="-42.2380952380951,45.8571428571434" />
+                  <mssgle:LineSegment
+                    End="-42.2380952380951,76.2142857142869" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\SRS_MST">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="193,42"
+          Id="Package\SRS_MST\D2_srs_mst_STAGING"
+          TopLeft="492,158" />
+        <NodeLayout
+          Size="117,42"
+          Id="Package\SRS_MST\srs_mst"
+          TopLeft="526.5,7.5" />
+        <EdgeLayout
+          Id="Package\SRS_MST.Paths[OLE DB Source Output]"
+          TopLeft="586.75,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,108.5"
+              Start="0,0"
+              End="0,101">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,101" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SRS_MST\D2_srs_mst_STAGING">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SRS_MST\srs_mst">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

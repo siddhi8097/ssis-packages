@@ -1,0 +1,2095 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/1/2020 2:29:07 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SQLBUSAPPS"
+  DTS:CreatorName="RAVENSBOURNE\afranchin.tech"
+  DTS:Description="SSIS Package Description"
+  DTS:DTSID="{CBAA6B45-DAFE-46F9-BA60-DBF9937811B6}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.157"
+  DTS:LocaleID="1033"
+  DTS:MaxErrorCount="0"
+  DTS:ObjectName="Tribal Remote Copy Nightly - Enc_PW"
+  DTS:ProtectionLevel="2"
+  DTS:VersionBuild="237"
+  DTS:VersionGUID="{AB0A26EF-1342-4081-A898-3FECD956182C}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{821FD6FA-3ABD-4918-8857-8FE57BE677FC}"
+      DTS:ObjectName="DestinationConnectionOLEDB">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=SQLBUSAPPS;User ID=ETL_User;Initial Catalog=sipr;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=false;Application Name=SSIS-Tribal Remote Copy Nightly - Enc_PW-{821FD6FA-3ABD-4918-8857-8FE57BE677FC}DestinationConnectionOLEDB;">
+          <EncryptedData
+            Type="http://www.w3.org/2001/04/xmlenc#Element"
+            Salt="oSOLNFBdgvI="
+            IV="DM46ixZnQS/9eGWVHocY4w==" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            <EncryptionMethod
+              Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
+            <CipherData>
+              <CipherValue>DM46ixZnQS/9eGWVHocY44KU8tpKMXjPT5hqAtspgyqH/HSKeO4IKHnqtCTJM6j39xCI+oFie9BQQT56hKVR7MXEfHJBZpqedenNZHCN8tjHHiLoMufJzw9FjyVAc6nMLYhKOhv89vf5eTQDPDbikG20Ie0RVitU67RYMuZVXx6lVHv2IYwQDPnJiTK6cMfM</CipherValue>
+            </CipherData>
+          </EncryptedData>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[GeneralSSISLog.log]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{9C06970B-4307-4C15-9C3B-0FBFD311611A}"
+      DTS:ObjectName="GeneralSSISLog.log">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="D:\SSIS\Logs\GeneralSSISLog.log" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Log Output]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{9C02BC09-697C-4D5F-9AED-6001614E6D42}"
+      DTS:ObjectName="Log Output">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="D:\Microsoft SQL Server Reporting Services\SSIS\SIPR Import Log.txt">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 0"
+              DTS:DTSID="{28045B91-3D11-4536-A4B7-C478D925FFBE}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SIPR_Import_Log.txt]"
+      DTS:CreationName="FILE"
+      DTS:DTSID="{3060C28D-8368-4CC1-9C63-25DC32A06F8B}"
+      DTS:ObjectName="SIPR_Import_Log.txt">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="D:\Microsoft SQL Server Reporting Services\SSIS\SIPR Import Log2.txt" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[sitsorcl.raves_rep]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A1E59A6F-FE57-46F0-99E7-185A2AC31BD0}"
+      DTS:ObjectName="sitsorcl.raves_rep">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=rave-sits-prod.cl6hms25byzx.eu-west-1.rds.amazonaws.com:1521/RAVESITS;User ID=raves_rep;Provider=OraOLEDB.Oracle.1;Persist Security Info=True;">
+          <EncryptedData
+            Type="http://www.w3.org/2001/04/xmlenc#Element"
+            Salt="SCyw7KnwnT4="
+            IV="uy5OENkub6lIMo41E+PgPw==" xmlns="http://www.w3.org/2001/04/xmlenc#">
+            <EncryptionMethod
+              Algorithm="http://www.w3.org/2001/04/xmlenc#aes256-cbc" />
+            <CipherData>
+              <CipherValue>uy5OENkub6lIMo41E+PgP9mOJfTvHZ7SLcy4mkAP1xuhZqduLd/8qbPy2w4QxqpxfPNZ4QRc1cWvGQOXsJiZZneKzsUYBSQogYnNaIHlGzj8FtVihZXJFsP77olK1nrv1em3iD/f9exhiOZm8l1HAKvfyQQW/cYjtKxbH6IYhz0JBbM14bXpOXzakyu4XCOY</CipherValue>
+            </CipherData>
+          </EncryptedData>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="SIPR_Import_Log.txt"
+      DTS:CreationName="Microsoft.LogProviderTextFile"
+      DTS:Description="Writes log entries for events to a CSV file"
+      DTS:DTSID="{52158953-EB27-409F-B3C8-FDFB68B38871}"
+      DTS:ObjectName="SSIS log provider for Text files">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+    <DTS:LogProvider
+      DTS:ConfigString="GeneralSSISLog.log"
+      DTS:CreationName="Microsoft.LogProviderTextFile"
+      DTS:Description="Writes log entries for events to a CSV file"
+      DTS:DTSID="{6994763B-5611-4B15-8F41-139B4BD1F62C}"
+      DTS:ObjectName="SSIS log provider for Text files1">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:Variables />
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">21,7,OnError,19,OnExecStatusChanged,13,OnInformation,27,OnPipelinePostComponentCall,25,OnPipelinePostEndOfRowset,25,OnPipelinePostPrimeOutput,26,OnPipelinePreComponentCall,24,OnPipelinePreEndOfRowset,24,OnPipelinePrePrimeOutput,18,OnPipelineRowsSent,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,10,Diagnostic,12,DiagnosticEx</DTS:Property>
+    <DTS:Property
+      DTS:EventName="Diagnostic"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="DiagnosticEx"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnExecStatusChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnInformation"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostComponentCall"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePostPrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePreComponentCall"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePreEndOfRowset"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelinePrePrimeOutput"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPipelineRowsSent"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnProgress"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnQueryCancel"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnTaskFailed"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnVariableValueChanged"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnWarning"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{6994763B-5611-4B15-8F41-139B4BD1F62C}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Copy srs_ala_Final"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{C6CB9903-876C-41B0-A3E1-E00094C176FD}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Copy srs_ala_Final"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{821FD6FA-3ABD-4918-8857-8FE57BE677FC}"
+          SQLTask:SqlStatementSource="exec sipr.[dbo].[RB_prcSRS_ala_Getdata]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SRS_ala"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:DTSID="{506A60E0-7F54-4DF2-9FBD-0C90FB0D0966}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SRS_ala"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:ObjectData>
+        <pipeline
+          defaultBufferSize="3145728"
+          version="1">
+          <components>
+            <component
+              refId="Package\SRS_ala\D2_srs_ala_STAGING"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="D2_srs_ala_STAGING"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[srs_ala_STAGING]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SRS_ala\D2_srs_ala_STAGING.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[DestinationConnectionOLEDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_SCJC]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ALA_SCJC"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_scjc]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_SCJC]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_SCES]"
+                      cachedDataType="wstr"
+                      cachedLength="2"
+                      cachedName="ALA_SCES"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_sces]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_SCES]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_SEQ3]"
+                      cachedDataType="numeric"
+                      cachedName="ALA_SEQ3"
+                      cachedPrecision="3"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_seq3]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_SEQ3]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_LCAC]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="ALA_LCAC"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_lcac]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_LCAC]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_PRSL]"
+                      cachedDataType="numeric"
+                      cachedName="ALA_PRSL"
+                      cachedPrecision="4"
+                      cachedScale="1"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_prsl]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_PRSL]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_DSLR]"
+                      cachedDataType="wstr"
+                      cachedLength="1"
+                      cachedName="ALA_DSLR"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_dslr]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_DSLR]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_UDF1]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ALA_UDF1"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udf1]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF1]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_UDF2]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ALA_UDF2"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udf2]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF2]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_UDF3]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ALA_UDF3"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udf3]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF3]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_UDF4]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ALA_UDF4"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udf4]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF4]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_UDF5]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ALA_UDF5"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udf5]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF5]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_UDF6]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ALA_UDF6"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udf6]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF6]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_UDF7]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ALA_UDF7"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udf7]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF7]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_UDF8]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ALA_UDF8"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udf8]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF8]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_UDF9]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ALA_UDF9"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udf9]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF9]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_UDFA]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ALA_UDFA"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udfa]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFA]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_UDFB]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ALA_UDFB"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udfb]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFB]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_UDFC]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ALA_UDFC"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udfc]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFC]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_UDFD]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ALA_UDFD"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udfd]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFD]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_UDFE]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ALA_UDFE"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udfe]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFE]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_UDFF]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ALA_UDFF"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udff]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFF]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_UDFG]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ALA_UDFG"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udfg]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFG]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_UDFH]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ALA_UDFH"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udfh]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFH]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_UDFI]"
+                      cachedDataType="wstr"
+                      cachedLength="15"
+                      cachedName="ALA_UDFI"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udfi]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFI]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_UDFJ]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="ALA_UDFJ"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udfj]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFJ]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_UDFK]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="ALA_UDFK"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udfk]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFK]" />
+                    <inputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].Columns[ALA_SLTC]"
+                      cachedDataType="wstr"
+                      cachedLength="12"
+                      cachedName="ALA_SLTC"
+                      externalMetadataColumnId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ALA_SLTC]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_SLTC]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_scjc]"
+                      dataType="wstr"
+                      length="15"
+                      name="ala_scjc" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_sces]"
+                      dataType="wstr"
+                      length="2"
+                      name="ala_sces" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_seq3]"
+                      dataType="numeric"
+                      name="ala_seq3"
+                      precision="4" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_lcac]"
+                      dataType="wstr"
+                      length="12"
+                      name="ala_lcac" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_prsl]"
+                      dataType="numeric"
+                      name="ala_prsl"
+                      precision="5"
+                      scale="1" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_dslr]"
+                      dataType="wstr"
+                      length="1"
+                      name="ala_dslr" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udf1]"
+                      dataType="wstr"
+                      length="15"
+                      name="ala_udf1" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udf2]"
+                      dataType="wstr"
+                      length="15"
+                      name="ala_udf2" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udf3]"
+                      dataType="wstr"
+                      length="15"
+                      name="ala_udf3" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udf4]"
+                      dataType="wstr"
+                      length="15"
+                      name="ala_udf4" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udf5]"
+                      dataType="wstr"
+                      length="15"
+                      name="ala_udf5" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udf6]"
+                      dataType="wstr"
+                      length="15"
+                      name="ala_udf6" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udf7]"
+                      dataType="wstr"
+                      length="15"
+                      name="ala_udf7" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udf8]"
+                      dataType="wstr"
+                      length="15"
+                      name="ala_udf8" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udf9]"
+                      dataType="wstr"
+                      length="15"
+                      name="ala_udf9" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udfa]"
+                      dataType="wstr"
+                      length="15"
+                      name="ala_udfa" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udfb]"
+                      dataType="wstr"
+                      length="15"
+                      name="ala_udfb" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udfc]"
+                      dataType="wstr"
+                      length="15"
+                      name="ala_udfc" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udfd]"
+                      dataType="wstr"
+                      length="15"
+                      name="ala_udfd" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udfe]"
+                      dataType="wstr"
+                      length="15"
+                      name="ala_udfe" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udff]"
+                      dataType="wstr"
+                      length="15"
+                      name="ala_udff" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udfg]"
+                      dataType="wstr"
+                      length="15"
+                      name="ala_udfg" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udfh]"
+                      dataType="wstr"
+                      length="15"
+                      name="ala_udfh" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udfi]"
+                      dataType="wstr"
+                      length="15"
+                      name="ala_udfi" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udfj]"
+                      dataType="wstr"
+                      length="100"
+                      name="ala_udfj" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ala_udfk]"
+                      dataType="wstr"
+                      length="100"
+                      name="ala_udfk" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input].ExternalColumns[ALA_SLTC]"
+                      dataType="wstr"
+                      length="12"
+                      name="ALA_SLTC" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\SRS_ala\D2_srs_ala_STAGING.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SRS_ala\D2_srs_ala_STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SRS_ala\D2_srs_ala_STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SRS_ala\D2_srs_ala_STAGING.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\SRS_ala\srs_ala"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="srs_ala"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">"SITS"."SRS_ALA"</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SRS_ala\srs_ala.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[sitsorcl.raves_rep]"
+                  connectionManagerRefId="Package.ConnectionManagers[sitsorcl.raves_rep]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_SCJC]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_SCJC]"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_SCJC]"
+                      name="ALA_SCJC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_SCES]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_SCES]"
+                      length="2"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_SCES]"
+                      name="ALA_SCES"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_SEQ3]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_SEQ3]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_SEQ3]"
+                      name="ALA_SEQ3"
+                      precision="3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_LCAC]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_LCAC]"
+                      length="12"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_LCAC]"
+                      name="ALA_LCAC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_PRSL]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_PRSL]"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_PRSL]"
+                      name="ALA_PRSL"
+                      precision="4"
+                      scale="1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_DSLR]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_DSLR]"
+                      length="1"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_DSLR]"
+                      name="ALA_DSLR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF1]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDF1]"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF1]"
+                      name="ALA_UDF1"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF2]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDF2]"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF2]"
+                      name="ALA_UDF2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF3]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDF3]"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF3]"
+                      name="ALA_UDF3"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF4]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDF4]"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF4]"
+                      name="ALA_UDF4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF5]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDF5]"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF5]"
+                      name="ALA_UDF5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF6]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDF6]"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF6]"
+                      name="ALA_UDF6"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF7]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDF7]"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF7]"
+                      name="ALA_UDF7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF8]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDF8]"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF8]"
+                      name="ALA_UDF8"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF9]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDF9]"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDF9]"
+                      name="ALA_UDF9"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFA]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDFA]"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFA]"
+                      name="ALA_UDFA"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFB]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDFB]"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFB]"
+                      name="ALA_UDFB"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFC]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDFC]"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFC]"
+                      name="ALA_UDFC"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFD]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDFD]"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFD]"
+                      name="ALA_UDFD"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFE]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDFE]"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFE]"
+                      name="ALA_UDFE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFF]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDFF]"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFF]"
+                      name="ALA_UDFF"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFG]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDFG]"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFG]"
+                      name="ALA_UDFG"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFH]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDFH]"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFH]"
+                      name="ALA_UDFH"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFI]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDFI]"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFI]"
+                      name="ALA_UDFI"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFJ]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDFJ]"
+                      length="100"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFJ]"
+                      name="ALA_UDFJ"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFK]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDFK]"
+                      length="100"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_UDFK]"
+                      name="ALA_UDFK"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_SLTC]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_SLTC]"
+                      length="12"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].Columns[ALA_SLTC]"
+                      name="ALA_SLTC"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_SCJC]"
+                      dataType="wstr"
+                      length="15"
+                      name="ALA_SCJC" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_SCES]"
+                      dataType="wstr"
+                      length="2"
+                      name="ALA_SCES" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_SEQ3]"
+                      dataType="numeric"
+                      name="ALA_SEQ3"
+                      precision="3" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_LCAC]"
+                      dataType="wstr"
+                      length="12"
+                      name="ALA_LCAC" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_PRSL]"
+                      dataType="numeric"
+                      name="ALA_PRSL"
+                      precision="4"
+                      scale="1" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_DSLR]"
+                      dataType="wstr"
+                      length="1"
+                      name="ALA_DSLR" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDF1]"
+                      dataType="wstr"
+                      length="15"
+                      name="ALA_UDF1" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDF2]"
+                      dataType="wstr"
+                      length="15"
+                      name="ALA_UDF2" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDF3]"
+                      dataType="wstr"
+                      length="15"
+                      name="ALA_UDF3" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDF4]"
+                      dataType="wstr"
+                      length="15"
+                      name="ALA_UDF4" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDF5]"
+                      dataType="wstr"
+                      length="15"
+                      name="ALA_UDF5" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDF6]"
+                      dataType="wstr"
+                      length="15"
+                      name="ALA_UDF6" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDF7]"
+                      dataType="wstr"
+                      length="15"
+                      name="ALA_UDF7" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDF8]"
+                      dataType="wstr"
+                      length="15"
+                      name="ALA_UDF8" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDF9]"
+                      dataType="wstr"
+                      length="15"
+                      name="ALA_UDF9" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDFA]"
+                      dataType="wstr"
+                      length="15"
+                      name="ALA_UDFA" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDFB]"
+                      dataType="wstr"
+                      length="15"
+                      name="ALA_UDFB" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDFC]"
+                      dataType="wstr"
+                      length="15"
+                      name="ALA_UDFC" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDFD]"
+                      dataType="wstr"
+                      length="15"
+                      name="ALA_UDFD" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDFE]"
+                      dataType="wstr"
+                      length="15"
+                      name="ALA_UDFE" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDFF]"
+                      dataType="wstr"
+                      length="15"
+                      name="ALA_UDFF" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDFG]"
+                      dataType="wstr"
+                      length="15"
+                      name="ALA_UDFG" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDFH]"
+                      dataType="wstr"
+                      length="15"
+                      name="ALA_UDFH" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDFI]"
+                      dataType="wstr"
+                      length="15"
+                      name="ALA_UDFI" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDFJ]"
+                      dataType="wstr"
+                      length="100"
+                      name="ALA_UDFJ" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_UDFK]"
+                      dataType="wstr"
+                      length="100"
+                      name="ALA_UDFK" />
+                    <externalMetadataColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output].ExternalColumns[ALA_SLTC]"
+                      dataType="wstr"
+                      length="12"
+                      name="ALA_SLTC" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_SCJC]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_SCJC]"
+                      name="ALA_SCJC" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_SCES]"
+                      dataType="wstr"
+                      length="2"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_SCES]"
+                      name="ALA_SCES" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_SEQ3]"
+                      dataType="numeric"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_SEQ3]"
+                      name="ALA_SEQ3"
+                      precision="3" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_LCAC]"
+                      dataType="wstr"
+                      length="12"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_LCAC]"
+                      name="ALA_LCAC" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_PRSL]"
+                      dataType="numeric"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_PRSL]"
+                      name="ALA_PRSL"
+                      precision="4"
+                      scale="1" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_DSLR]"
+                      dataType="wstr"
+                      length="1"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_DSLR]"
+                      name="ALA_DSLR" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDF1]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDF1]"
+                      name="ALA_UDF1" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDF2]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDF2]"
+                      name="ALA_UDF2" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDF3]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDF3]"
+                      name="ALA_UDF3" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDF4]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDF4]"
+                      name="ALA_UDF4" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDF5]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDF5]"
+                      name="ALA_UDF5" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDF6]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDF6]"
+                      name="ALA_UDF6" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDF7]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDF7]"
+                      name="ALA_UDF7" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDF8]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDF8]"
+                      name="ALA_UDF8" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDF9]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDF9]"
+                      name="ALA_UDF9" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDFA]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDFA]"
+                      name="ALA_UDFA" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDFB]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDFB]"
+                      name="ALA_UDFB" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDFC]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDFC]"
+                      name="ALA_UDFC" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDFD]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDFD]"
+                      name="ALA_UDFD" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDFE]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDFE]"
+                      name="ALA_UDFE" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDFF]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDFF]"
+                      name="ALA_UDFF" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDFG]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDFG]"
+                      name="ALA_UDFG" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDFH]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDFH]"
+                      name="ALA_UDFH" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDFI]"
+                      dataType="wstr"
+                      length="15"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDFI]"
+                      name="ALA_UDFI" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDFJ]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDFJ]"
+                      name="ALA_UDFJ" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDFK]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_UDFK]"
+                      name="ALA_UDFK" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_SLTC]"
+                      dataType="wstr"
+                      length="12"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ALA_SLTC]"
+                      name="ALA_SLTC" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\SRS_ala.Paths[OLE DB Source Output]"
+              endId="Package\SRS_ala\D2_srs_ala_STAGING.Inputs[Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\SRS_ala\srs_ala.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate srs_ala_staging"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:DTSID="{1FA92E8E-59CB-4296-A733-63B3DD1E961F}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:FailPackageOnFailure="True"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate srs_ala_staging"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0"
+        DTS:LoggingMode="1">
+        <DTS:Property
+          DTS:DataType="8"
+          DTS:Name="EventFilter">13,7,OnError,19,OnExecStatusChanged,13,OnInformation,13,OnPostExecute,14,OnPostValidate,12,OnPreExecute,13,OnPreValidate,10,OnProgress,13,OnQueryCancel,12,OnTaskFailed,22,OnVariableValueChanged,9,OnWarning,24,ExecuteSQLExecutingQuery</DTS:Property>
+        <DTS:Property
+          DTS:EventName="ExecuteSQLExecutingQuery"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnError"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnExecStatusChanged"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnInformation"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPostExecute"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPostValidate"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPreExecute"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnPreValidate"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnProgress"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnQueryCancel"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnTaskFailed"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnVariableValueChanged"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+        <DTS:Property
+          DTS:EventName="OnWarning"
+          DTS:Name="ColumnFilter">
+          <DTS:Property
+            DTS:Name="Computer">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="Operator">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceName">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="SourceID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="ExecutionID">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="MessageText">-1</DTS:Property>
+          <DTS:Property
+            DTS:Name="DataBytes">-1</DTS:Property>
+        </DTS:Property>
+      </DTS:LoggingOptions>
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{821FD6FA-3ABD-4918-8857-8FE57BE677FC}"
+          SQLTask:BypassPrepare="False"
+          SQLTask:SqlStatementSource="use sipr&#xA;truncate table sipr.dbo.srs_ala_STAGING" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{BCD43043-25BE-4F56-83B8-187AA81E9134}"
+      DTS:From="Package\SRS_ala"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Copy srs_ala_Final" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{850B83FD-7726-4EBA-A31F-DDA886C628B1}"
+      DTS:From="Package\Truncate srs_ala_staging"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\SRS_ala" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="173,42"
+          Id="Package\Copy srs_ala_Final"
+          TopLeft="245,257" />
+        <NodeLayout
+          Size="122,42"
+          Id="Package\SRS_ala"
+          TopLeft="204.595238095238,131.214285714287" />
+        <NodeLayout
+          Size="202,42"
+          Id="Package\Truncate srs_ala_staging"
+          TopLeft="209.833333333333,5.50000000000015" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="265.595238095238,173.214285714287">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="65.904761904762,83.785714285713"
+              Start="0,0"
+              End="65.904761904762,76.285714285713">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.8928571428565" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,37.8928571428565"
+                    Point2="0,41.8928571428565"
+                    Point3="4,41.8928571428565" />
+                  <mssgle:LineSegment
+                    End="61.904761904762,41.8928571428565" />
+                  <mssgle:CubicBezierSegment
+                    Point1="61.904761904762,41.8928571428565"
+                    Point2="65.904761904762,41.8928571428565"
+                    Point3="65.904761904762,45.8928571428565" />
+                  <mssgle:LineSegment
+                    End="65.904761904762,76.285714285713" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="331.833333333333,47.5000000000001">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-66.2380952380951,83.7142857142869"
+              Start="0,0"
+              End="-66.2380952380951,76.2142857142869">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.8571428571434" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,37.8571428571434"
+                    Point2="0,41.8571428571434"
+                    Point3="-4,41.8571428571434" />
+                  <mssgle:LineSegment
+                    End="-62.2380952380951,41.8571428571434" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-62.2380952380951,41.8571428571434"
+                    Point2="-66.2380952380951,41.8571428571434"
+                    Point3="-66.2380952380951,45.8571428571434" />
+                  <mssgle:LineSegment
+                    End="-66.2380952380951,76.2142857142869" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\SRS_ala">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="114,42"
+          Id="Package\SRS_ala\srs_ala"
+          TopLeft="526.5,7.5" />
+        <NodeLayout
+          Size="190,42"
+          Id="Package\SRS_ala\D2_srs_ala_STAGING"
+          TopLeft="492,158" />
+        <EdgeLayout
+          Id="Package\SRS_ala.Paths[OLE DB Source Output]"
+          TopLeft="585.25,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,108.5"
+              Start="0,0"
+              End="0,101">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,101" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SRS_ala\D2_srs_ala_STAGING">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SRS_ala\srs_ala">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -5,3 +5,6 @@ This repository contains 4 SSIS packages used for automation and integration at 
 - SFTP transfers  
 - Logic App triggers  
 - SQL + Stored Procedure-based workflows
+
+
+testing for siddhi 

@@ -1,10 +1,10 @@
- SSIS Integration and Reporting Assets
+
 
 This repository contains organized and production-ready assets used for automation, data integration, and reporting workflows at **Ravensbourne University London**. These assets have been developed as part of an internal project led by the Systems Integration team to streamline processes between core systems such as **SITS**, **Power BI**, and third-party APIs.
 
 ---
 
- 📁 Repository Structure
+ *****Repository Structure*****
 
 The repository is organised into the following directories:
 
@@ -28,7 +28,7 @@ The repository is organised into the following directories:
 
 ---
 
-🎯 Purpose
+***** Purpose*****
 
 The main goals of this repository are:
 
@@ -39,7 +39,7 @@ The main goals of this repository are:
 
 ---
 
-## 👥 Contributors
+ ***** Contributors *****
 
 This project is developed and maintained by:
 

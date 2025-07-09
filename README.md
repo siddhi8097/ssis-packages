@@ -1,68 +1,51 @@
-# 📦 SSIS Integration & Automation Repository
+ SSIS Integration and Reporting Assets
 
-Welcome to Ravensbourne University’s centralized automation repository.  
-This project showcases real-time integration solutions using **SSIS**, **Power BI**, **SQL Server**, and **Python** to streamline data movement, automate reporting, and enable operational efficiency.
-
----
-
-## 🧭 Folder Structure
-
-| Folder Name                         | Description                                                      |
-|------------------------------------|------------------------------------------------------------------|
-| `sql/`                              | All SQL scripts used in data transformation and querying         |
-| `python Scripts/`                  | Python jobs for API interaction and data processing              |
-| `powerbi Dashboards/`              | Power BI (.pbix) dashboards for data visualization               |
-| `Documents excel,ppt,and word files/` | Excel sheets, presentations, documentation, and templates        |
-| `images/`                          | Screenshots and UI references for documentation or reports       |
-| `md file/`                         | Markdown files (like this README) for documentation              |
+This repository contains organized and production-ready assets used for automation, data integration, and reporting workflows at **Ravensbourne University London**. These assets have been developed as part of an internal project led by the Systems Integration team to streamline processes between core systems such as **SITS**, **Power BI**, and third-party APIs.
 
 ---
 
-## 🧰 Tech Stack
+ 📁 Repository Structure
 
-- **SQL Server Integration Services (SSIS)**
-- **Microsoft SQL Server 2019**
-- **Python 3.x** (for REST API automation)
-- **Power BI Desktop**
-- **Azure Logic Apps & Automation**
-- **GitHub** (for version control)
+The repository is organised into the following directories:
 
----
+- `sql/`  
+  SQL scripts and stored procedures used for academic and operational data processing.
 
-## 📊 Use Case Examples
+- `powerbi Dashboards/`  
+  Power BI reports and `.pbix` files used for data visualization and strategic dashboards.
 
-✔ Upload student data securely to **Tribal S3**  
-✔ Automate **SFTP transfers** to external partners  
-✔ Trigger workflows using **Azure Logic Apps**  
-✔ Run complex queries & **stored procedures** via SQL  
-✔ Visualize outcomes using **interactive Power BI dashboards**
+- `python Scripts/`  
+  Python automation jobs for API integrations, attendance reporting, and system-level logic.
 
----
+- `Documents excel,ppt,and word files/`  
+  Supporting documentation including Excel analysis, PowerPoint briefs, and Word-based specifications.
 
-## 🔒 Governance & Security
+- `images/`  
+  Reference diagrams, screenshots, and documentation visuals.
 
-All data handling follows university IT policies including:  
-- GDPR compliance  
-- Secure credential storage  
-- Controlled access to automation jobs
+- `md file/`  
+  Markdown-based documentation including this README file.
 
 ---
 
-## 🧠 Contribution Note
+🎯 Purpose
 
-This project is actively maintained by **Siddhi Patil**, System Integration Analyst.  
-You're welcome to fork, clone, and collaborate with credit.
+The main goals of this repository are:
 
----
-
-## 🙌 Acknowledgements
-
-- 🏫 Ravensbourne University, IT Services  
-- 💡 Inspired by real operational challenges and solutions  
-- 🎓 For educational, automation, and analytics demonstration
+- To improve the efficiency and reliability of student and academic data integration  
+- To automate scheduled or repetitive ETL (Extract, Transform, Load) processes  
+- To centralise key files and workflows for long-term sustainability and easier maintenance  
+- To enable transparent documentation and future team handover  
 
 ---
 
-> “Automation is not about replacing people—it's about enabling people to do more impactful work.”  
-> — Siddhi Patil
+## 👥 Contributors
+
+This project is developed and maintained by:
+
+ 
+- **Richard Fisher** – Data, Integration & Access Lead -- IT Services
+- **Siddhi Patil** – Systems Analyst- Data, Integration & Access Lead-IT Services
+
+
 
